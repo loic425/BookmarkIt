@@ -1,0 +1,29 @@
+imports:
+    - { resource: frontend/account.yml }
+    - { resource: frontend/bookmark.yml }
+
+services:
+    app.behat.page.frontend.crud.index:
+        class: App\Behat\Page\Frontend\Crud\IndexPage
+        parent: app.behat.symfony_page
+        abstract: true
+        public: false
+        arguments:
+            - "@app.behat.table_accessor"
+
+    app.behat.page.frontend.crud.create:
+        class: App\Behat\Page\Frontend\Crud\CreatePage
+        parent: app.behat.symfony_page
+        abstract: true
+        public: false
+
+    app.behat.page.frontend.crud.update:
+        class: App\Behat\Page\Frontend\Crud\UpdatePage
+        parent: app.behat.symfony_page
+        abstract: true
+        public: false
+
+    app.behat.page.frontend.home:
+        class: App\Behat\Page\Frontend\HomePage
+        parent: app.behat.symfony_page
+        public: false

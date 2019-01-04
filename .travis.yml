@@ -1,0 +1,66 @@
+dist: trusty
+
+language: php
+
+env:
+    global:
+        - BOOKMARK_IT_CACHE_DIR=$HOME/.bookmark_it-cache
+        - BOOKMARK_IT_BUILD_DIR=etc/build
+
+matrix:
+    include:
+        -
+            sudo: required
+            php: 7.2
+            env:
+                - BOOKMARK_IT_SUITE="application"
+                - TRAVIS_NODE_VERSION="7.5"
+            services:
+                - memcached
+        -
+            sudo: false
+            php: 7.2
+            env: BOOKMARK_IT_SUITE="docs packages"
+            addons:
+                apt:
+                    packages:
+                        - parallel
+
+cache:
+    yarn: true
+    directories:
+        - ~/.composer/cache/files
+        - ~/.cache/pip
+        - vendor
+        - node_modules
+        - $BOOKMARK_IT_CACHE_DIR
+
+before_install:
+    - mv .env.test.dist .env
+    - set -a && source .env && set +a
+
+    - etc/travis/run-suite before_install "${BOOKMARK_IT_SUITE}"
+
+install:
+    - etc/travis/run-suite install "${BOOKMARK_IT_SUITE}"
+
+before_script:
+    - etc/travis/run-suite before_script "${BOOKMARK_IT_SUITE}"
+
+script:
+    - etc/travis/run-suite script "${BOOKMARK_IT_SUITE}"
+
+before_cache:
+    - etc/travis/run-suite before_cache "${BOOKMARK_IT_SUITE}"
+
+after_success:
+    - etc/travis/run-suite after_success "${BOOKMARK_IT_SUITE}"
+
+after_failure:
+    - etc/travis/run-suite after_failure "${BOOKMARK_IT_SUITE}"
+
+after_script:
+    - etc/travis/run-suite after_script "${BOOKMARK_IT_SUITE}"
+
+notifications:
+    email: false

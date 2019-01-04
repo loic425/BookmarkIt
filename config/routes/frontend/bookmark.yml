@@ -1,0 +1,56 @@
+app_frontend_bookmark:
+    resource: |
+        alias: app.bookmark
+        section: frontend
+        except: ['show']
+        redirect: update
+        grid: app_frontend_bookmark
+        vars:
+            all:
+                subheader: app.ui.manage_bookmarks
+                templates:
+                    form: frontend/bookmark/_form.html.twig
+            index:
+                icon: bookmark
+        templates: frontend/crud
+    type: sylius.resource
+
+app_frontend_bookmark_create_video:
+    path: /bookmarks/video/new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.bookmark:createAction
+        _sylius:
+            section: frontend
+            factory:
+                method: createTyped
+                arguments:
+                    - video
+            template: frontend/crud/create.html.twig
+            redirect: app_frontend_bookmark_update
+            vars:
+                subheader: app.ui.manage_bookmarks
+                templates:
+                    form: frontend/bookmark/_form.html.twig
+                route:
+                    name: app_frontend_bookmark_create_video
+
+app_frontend_bookmark_create_photo:
+    path: /bookmarks/photo/new
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.bookmark:createAction
+        _sylius:
+            section: frontend
+            factory:
+                method: createTyped
+                arguments:
+                    - photo
+            template: frontend/crud/create.html.twig
+            redirect: app_frontend_bookmark_update
+            vars:
+                subheader: app.ui.manage_bookmarks
+                templates:
+                    form: frontend/bookmark/_form.html.twig
+                route:
+                    name: app_frontend_bookmark_create_photo

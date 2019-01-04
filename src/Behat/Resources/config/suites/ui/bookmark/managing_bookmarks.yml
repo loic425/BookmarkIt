@@ -1,0 +1,15 @@
+default:
+    suites:
+        ui_managing_bookmarks:
+            contexts_services:
+                - app.behat.context.hook.doctrine_orm
+
+                - app.behat.context.setup.bookmark
+
+                - app.behat.context.transform.bookmark
+                - app.behat.context.transform.shared_storage
+
+                - app.behat.context.ui.frontend.managing_bookmarks
+                - app.behat.context.ui.frontend.notification
+            filters:
+                tags: "@managing_bookmarks && @ui"

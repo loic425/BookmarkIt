@@ -1,0 +1,9 @@
+{% import 'backend/macro/breadcrumb.html.twig' as breadcrumb %}
+
+{% set breadcrumbs = [
+        { label: 'sylius.ui.home'|trans, url: path('app_frontend_homepage') },
+        { label: (metadata.applicationName~'.ui.'~metadata.pluralName)|trans },
+    ]
+%}
+
+{{ breadcrumb.crumble(breadcrumbs) }}

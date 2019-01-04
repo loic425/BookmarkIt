@@ -1,0 +1,17 @@
+parameters:
+    email_contact: contact@bookmark_it.com
+    email_name: Contact BookmarkIt
+    email_sender: no-reply@bookmark_it.com
+
+imports:
+    - { resource: services/_app.yml }
+    - { resource: services/context.yml }
+    - { resource: services/factory.yml }
+    - { resource: services/fixtures.yml }
+    - { resource: services/fixtures_factories.yml }
+    - { resource: services/form.yml }
+    - { resource: services/installer.yml }
+    - { resource: services/listener.yml }
+    - { resource: services/menu.yml }
+    - { resource: services/validator.yml }
+    - { resource: services/view.yml }

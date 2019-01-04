@@ -1,0 +1,25 @@
+services:
+    app.fixture.example_factory.admin_user:
+        class: App\Fixture\Factory\AdminUserExampleFactory
+        arguments:
+            - "@sylius.factory.admin_user"
+        public: true
+
+    app.fixture.example_factory.app_user:
+        class: App\Fixture\Factory\AppUserExampleFactory
+        arguments:
+            - "@sylius.factory.app_user"
+            - "@sylius.factory.customer"
+        public: true
+
+    app.fixture.example_factory.bookmark:
+        class: App\Fixture\Factory\BookmarkExampleFactory
+        arguments:
+            - "@app.factory.bookmark"
+        public: true
+
+    app.fixture.example_factory.oauth_client:
+        class: App\Fixture\Factory\OAuthClientExampleFactory
+        arguments:
+            - "@app.factory.oauth_client"
+        public: true    

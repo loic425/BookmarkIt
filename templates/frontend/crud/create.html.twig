@@ -1,0 +1,12 @@
+{% extends 'frontend/layout.html.twig' %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.new_'~metadata.name) %}
+
+{% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
+
+{% form_theme form 'frontend/form/theme.html.twig' %}
+
+{% block content %}
+    {% include 'frontend/crud/create/_header.html.twig' %}
+    {% include 'frontend/crud/create/_content.html.twig' %}
+{% endblock %}

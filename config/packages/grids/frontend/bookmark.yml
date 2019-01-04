@@ -1,0 +1,60 @@
+sylius_grid:
+    grids:
+        app_frontend_bookmark:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%app.model.bookmark.class%"
+            sorting:
+                addedAt: desc
+            fields:
+                title:
+                    type: string
+                    label: sylius.ui.title
+                    sortable: ~
+                type:
+                    type: twig
+                    label: sylius.ui.type
+                    sortable: ~
+                    options:
+                        vars:
+                            labels: "frontend/bookmark/label/type"
+                        template: "frontend/bookmark/grid/field/type.html.twig"
+                authorName:
+                    type: string
+                    label: sylius.ui.author
+                    sortable: ~
+                addedAt:
+                    type: datetime
+                    label: app.ui.added_date
+                    sortable: ~
+                    options:
+                        format: d-m-Y
+            actions:
+                main:
+                    create:
+                        type: links
+                        label: sylius.ui.create
+                        options:
+                            class: primary
+                            icon: plus
+                            header:
+                                icon: cube
+                                label: sylius.ui.type
+                            links:
+                                video:
+                                    label: app.ui.video
+                                    icon: video
+                                    route: app_frontend_bookmark_create_video
+                                photo:
+                                    label: app.ui.photo
+                                    icon: photo
+                                    route: app_frontend_bookmark_create_photo
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete

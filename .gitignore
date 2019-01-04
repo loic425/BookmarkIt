@@ -1,0 +1,54 @@
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!var/.gitkeep
+/vendor/
+
+/public/assets
+/public/bundles
+/public/css
+/public/js
+/public/media
+
+**/node_modules/*
+
+.idea
+*.DS_Store
+
+/etc/build/*
+!/etc/build/.gitkeep
+
+###> symfony/framework-bundle ###
+/.env
+/public/bundles/
+/public/uploads/img/*
+/public/uploads/avatar/*
+!/public/uploads/avatar/.gitkeep
+!/public/uploads/img/.gitkeep
+/public/media/*
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> behat/symfony2-extension ###
+behat.yml
+###< behat/symfony2-extension ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> infection/infection ###
+infection-log.txt
+coverage/*
+###< infection/infection ###
