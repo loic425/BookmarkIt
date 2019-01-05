@@ -1,6 +1,4 @@
 imports:
-  - { resource: 'grids/backend/admin_user.yml' }
-
   - { resource: 'grids/frontend/bookmark.yml' }
 
 sylius_grid:

@@ -39,27 +39,6 @@ final class AdminMenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $this->addConfigurationSubMenu($menu);
-
         return $menu;
-    }
-
-    /**
-     * @param ItemInterface $menu
-     *
-     * @return ItemInterface
-     */
-    private function addConfigurationSubMenu(ItemInterface $menu)
-    {
-        $configuration = $menu
-            ->addChild('configuration')
-            ->setLabel('sylius.ui.configuration')
-        ;
-
-        $configuration->addChild('backend_admin_user', ['route' => 'sylius_backend_admin_user_index'])
-            ->setLabel('sylius.ui.admin_users')
-            ->setLabelAttribute('icon', 'lock');
-
-        return $configuration;
     }
 }

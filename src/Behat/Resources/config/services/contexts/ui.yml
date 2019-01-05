@@ -8,16 +8,6 @@ services:
 #        class: App\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
-    app.behat.context.ui.backend.managing_administrators:
-        class: App\Behat\Context\Ui\Backend\ManagingAdministratorsContext
-        arguments:
-            - "@app.behat.page.backend.administrator.create"
-            - "@app.behat.page.backend.administrator.index"
-            - "@app.behat.page.backend.administrator.update"
-            - "@app.behat.notification_checker"
-        tags:
-            - { name: fob.context_service }
-
     app.behat.context.ui.backend.notification:
         class: App\Behat\Context\Ui\Backend\NotificationContext
         arguments:
