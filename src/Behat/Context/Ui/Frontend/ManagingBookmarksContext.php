@@ -77,6 +77,7 @@ class ManagingBookmarksContext implements Context
 
     /**
      * @When I want to browse bookmarks
+     * @When I browse bookmarks
      */
     public function iWantToBrowseBookmarks()
     {
@@ -179,6 +180,31 @@ class ManagingBookmarksContext implements Context
     }
 
     /**
+     * @When I delete bookmark with title :title
+     */
+    public function iDeleteBookmarkWithTitle($title)
+    {
+        $this->indexPage->deleteResourceOnPage(['title' => $title]);
+    }
+
+    /**
+     * @When I (also) check the :title bookmark
+     */
+    public function iCheckTheBookmark(string $title): void
+    {
+        $this->indexPage->checkResourceOnPage(['title' => $title]);
+    }
+
+    /**
+     * @When I delete them
+     */
+    public function iDeleteThem(): void
+    {
+        $this->indexPage->bulkDelete();
+    }
+
+    /**
+     * @Then I should see a single bookmark in the list
      * @Then /^there should be (\d+) bookmarks in the list$/
      */
     public function iShouldSeeBookmarksInTheList(int $number = 1): void
