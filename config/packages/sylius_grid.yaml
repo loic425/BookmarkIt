@@ -1,6 +1,5 @@
 imports:
   - { resource: 'grids/backend/admin_user.yml' }
-  - { resource: 'grids/backend/customer.yml' }
 
   - { resource: 'grids/frontend/bookmark.yml' }
 
