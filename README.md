@@ -1,10 +1,10 @@
 <h1 align="center">
     BookmarkIt
     <br />
-    <a href="http://travis-ci.org/Monofony/SymfonyStarter" title="Build status" target="_blank">
+    <a href="http://travis-ci.org/loic425/BookmarkIt" title="Build status" target="_blank">
         <img src="https://img.shields.io/travis/loic425/BookmarkIt/master.svg" />
     </a>
-    <a href="https://scrutinizer-ci.com/g/Monofony/SymfonyStarter/" title="Scrutinizer" target="_blank">
+    <a href="https://scrutinizer-ci.com/g/loic425/BookmarkIt/" title="Scrutinizer" target="_blank">
         <img src="https://img.shields.io/scrutinizer/g/loic425/BookmarkIt.svg" />
     </a>    
 </h1>
