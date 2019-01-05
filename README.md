@@ -1,24 +1,13 @@
 <h1 align="center">
-    Monofony
+    BookmarkIt
     <br />
     <a href="http://travis-ci.org/Monofony/SymfonyStarter" title="Build status" target="_blank">
-        <img src="https://img.shields.io/travis/Monofony/SymfonyStarter/master.svg" />
+        <img src="https://img.shields.io/travis/loic425/BookmarkIt/master.svg" />
     </a>
     <a href="https://scrutinizer-ci.com/g/Monofony/SymfonyStarter/" title="Scrutinizer" target="_blank">
-        <img src="https://img.shields.io/scrutinizer/g/Monofony/SymfonyStarter.svg" />
+        <img src="https://img.shields.io/scrutinizer/g/loic425/BookmarkIt.svg" />
     </a>    
 </h1>
-
-Search and replace 'bookmark_it', 'BookmarkIt' et 'BOOKMARK_IT' with your application name
-
-
-Quick Installation with Vagrant
--------------------------------
-
-```bash
-$ cd etc/vagrant
-$ vagrant up
-```
 
 Init project
 ------------
