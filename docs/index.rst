@@ -1,5 +1,5 @@
 BookmarkIt Documentation
-=====================
+========================
 
 .. image:: /_images/logo_big.png
    :alt:   BookmarkIt Welcome Page
