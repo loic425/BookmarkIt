@@ -1,5 +1,5 @@
 BookmarkIt Documentation
-=====================
+========================
 
 This directory contains documentation for BookmarkIt. 
 
