@@ -1,4 +1,3 @@
 imports:
     - suites/ui/account/login.yml
     - suites/ui/bookmark/managing_bookmarks.yml
-    - suites/ui/user/managing_administrators.yml
