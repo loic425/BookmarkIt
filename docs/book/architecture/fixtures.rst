@@ -12,7 +12,7 @@ Fixtures are used mainly for testing, but also for having your website in a cert
    The way Fixtures are designed in BookmarkIt is well described in the `FixturesBundle documentation <http://docs.sylius.org/en/latest/components_and_bundles/bundles/SyliusFixturesBundle/index.html>`_.
 
 What are the available fixtures in BookmarkIt?
--------------------------------------------
+----------------------------------------------
 
 To check what fixtures are defined in BookmarkIt run:
 
@@ -21,7 +21,7 @@ To check what fixtures are defined in BookmarkIt run:
    $ php bin/console sylius:fixtures:list
 
 How to load BookmarkIt fixtures?
------------------------------
+--------------------------------
 
 The recommended way to load the predefined set of BookmarkIt fixtures is here:
 
@@ -30,7 +30,7 @@ The recommended way to load the predefined set of BookmarkIt fixtures is here:
    $ php bin/console sylius:fixtures:load
 
 What data is loaded by fixtures in BookmarkIt?
--------------------------------------------
+----------------------------------------------
 
 All files that serve for loading fixtures of BookmarkIt are placed in the ``AppBundle/Fixture/*`` directory.
 
