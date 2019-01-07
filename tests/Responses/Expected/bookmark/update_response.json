@@ -1,0 +1,11 @@
+{
+    "type": "video",
+    "title": "Star Wars: Empire strikes back",
+    "url": "http://example.com/star-wars",
+    "authorName": "George Lucas",
+    "addedAt": "@string@.isDateTime()",
+    "width": 1280,
+    "height": 1024,
+    "duration": 118,
+    "id": @integer@
+}

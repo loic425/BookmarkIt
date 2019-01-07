@@ -1,0 +1,25 @@
+App\Entity\Bookmark:
+    star_wars:
+        type: video
+        title: Star Wars
+        url: http://example.com/star-wars
+        authorName: George Lucas
+        width: 1280
+        height: 1024
+        duration: 118
+    game_of_thrones:
+        type: video
+        title: Game of Thrones
+        url: http://example.com/game-of-thrones
+        authorName: George R.R. Martin
+        width: 1280
+        height: 1024
+        duration: 118
+    back_to_the_future:
+        type: video
+        title: Back to the Future
+        url: http://example.com/bttf
+        authorName: Robert Zemeckis
+        width: 1280
+        height: 1024
+        duration: 118
