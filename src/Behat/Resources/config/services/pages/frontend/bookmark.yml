@@ -26,8 +26,14 @@ services:
         public: false
         arguments: ["app_frontend_bookmark_index"]
 
-    app.behat.page.frontend.bookmark.update:
+    app.behat.page.frontend.bookmark.update_video:
         class: App\Behat\Page\Frontend\Bookmark\UpdatePage
         parent: app.behat.page.frontend.crud.update
         public: false
-        arguments: ["app_frontend_bookmark_update"]
+        arguments: ["app_frontend_bookmark_update_video"]
+
+    app.behat.page.frontend.bookmark.update_photo:
+        class: App\Behat\Page\Frontend\Bookmark\UpdatePage
+        parent: app.behat.page.frontend.crud.update
+        public: false
+        arguments: ["app_frontend_bookmark_update_photo"]

@@ -12,8 +12,8 @@ services:
         class: Sylius\Bundle\UiBundle\Controller\SecurityController
         public: true
         arguments:
-        - "@security.authentication_utils"
-        - "@form.factory"
-        - "@templating.engine.twig"
-        - "@security.authorization_checker"
-        - "@router"
+            - "@security.authentication_utils"
+            - "@form.factory"
+            - "@templating.engine.twig"
+            - "@security.authorization_checker"
+            - "@router"

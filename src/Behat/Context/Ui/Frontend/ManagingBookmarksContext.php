@@ -39,7 +39,12 @@ class ManagingBookmarksContext implements Context
     /**
      * @var UpdatePage
      */
-    private $updatePage;
+    private $updateVideoPage;
+
+    /**
+     * @var UpdatePage
+     */
+    private $updatePhotoPage;
 
     /**
      * @var CurrentPageResolverInterface
@@ -50,29 +55,38 @@ class ManagingBookmarksContext implements Context
      * @param CreatePage $createVideoPage
      * @param CreatePage $createPhotoPage
      * @param IndexPage $indexPage
-     * @param UpdatePage $updatePage
+     * @param UpdatePage $updateVideoPage
+     * @param UpdatePage $updatePhotoPage
      * @param CurrentPageResolverInterface $currentPageResolver
      */
     public function __construct(
         CreatePage $createVideoPage,
         CreatePage $createPhotoPage,
         IndexPage $indexPage,
-        UpdatePage $updatePage,
+        UpdatePage $updateVideoPage,
+        UpdatePage $updatePhotoPage,
         CurrentPageResolverInterface $currentPageResolver
     ) {
         $this->createVideoPage = $createVideoPage;
         $this->createPhotoPage = $createPhotoPage;
         $this->indexPage = $indexPage;
-        $this->updatePage = $updatePage;
+        $this->updateVideoPage = $updateVideoPage;
+        $this->updatePhotoPage = $updatePhotoPage;
         $this->currentPageResolver = $currentPageResolver;
     }
 
     /**
-     * @When I want to create a new video bookmark
+     * @When I want to create a new :type bookmark
      */
-    public function iWantToCreateVideoBookmark()
+    public function iWantToCreateBookmark(string $type)
     {
-        $this->createVideoPage->open();
+        if ('video' === $type) {
+            $this->createVideoPage->open();
+        } elseif ('photo' === $type) {
+            $this->createPhotoPage->open();
+        } else {
+            throw new \InvalidArgumentException(sprintf('Bookmark type %s is incorrect', $type));
+        }
     }
 
     /**
@@ -87,9 +101,19 @@ class ManagingBookmarksContext implements Context
     /**
      * @Given I want to modify the :bookmark bookmark
      */
-    public function iWantToModifyAnArticle(Bookmark $bookmark)
+    public function iWantToModifyABookmark(Bookmark $bookmark)
     {
-        $this->updatePage->open(['id' => $bookmark->getId()]);
+        $updatePage = null;
+
+        if ('video' === $bookmark->getType()) {
+            $updatePage = $this->updateVideoPage;
+        } elseif ('photo' === $bookmark->getType()) {
+            $updatePage = $this->createPhotoPage;
+        } else {
+            throw new \InvalidArgumentException(sprintf('Bookmark type %s is incorrect', $bookmark->getType()));
+        }
+
+        $updatePage->open(['id' => $bookmark->getId()]);
     }
 
 
@@ -176,7 +200,13 @@ class ManagingBookmarksContext implements Context
      */
     public function iSaveMyChanges()
     {
-        $this->updatePage->saveChanges();
+        /** @var UpdatePage $currentPage */
+        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
+            $this->updateVideoPage,
+            $this->updatePhotoPage
+        ]);
+
+        $currentPage->saveChanges();
     }
 
     /**
@@ -232,17 +262,19 @@ class ManagingBookmarksContext implements Context
 
 
     /**
-     * @Then I should be notified that the title is required
+     * @Then I should be notified that the :elementName is required
      */
-    public function iShouldBeNotifiedThatTitleIsRequired()
+    public function iShouldBeNotifiedThatTitleIsRequired(string $elementName)
     {
         /** @var CreatePage $currentPage */
         $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
             $this->createVideoPage,
-            $this->createPhotoPage
+            $this->createPhotoPage,
+            $this->updateVideoPage,
+            $this->updatePhotoPage,
         ]);
 
-        Assert::same($currentPage->getValidationMessage('title'), 'This value should not be blank.');
+        Assert::same($currentPage->getValidationMessage($elementName), 'This value should not be blank.');
     }
 
     /**

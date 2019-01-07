@@ -14,13 +14,39 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Symfony\Component\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table("app_bookmark")
  *
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"Default", "Detailed"}},
+ *     attributes={"validation_groups"={Bookmark::class, "validationGroups"}},
+ *     itemOperations={
+ *          "delete",
+ *          "get",
+ *          "put"
+ *     },
+ *     collectionOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"Default"}}
+ *         },
+ *         "post_video"={
+ *             "method"="POST",
+ *             "path"="/bookmarks/videos",
+ *             "controller"=App\Controller\CreateBookmarkVideo::class,
+ *         },
+ *         "post_photo"={
+ *             "method"="POST",
+ *             "path"="/bookmarks/photos",
+ *             "controller"=App\Controller\CreateBookmarkPhoto::class,
+ *         },
+ *         "post"={
+ *              "validation_groups"={"video", "photo"}
+ *         }
+ *     })
  */
 class Bookmark implements ResourceInterface
 {
@@ -33,6 +59,8 @@ class Bookmark implements ResourceInterface
      * @var string|null
      *
      * @ORM\Column(type="string")
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $type;
 
@@ -41,7 +69,9 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"video", "photo"})
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $title;
 
@@ -50,7 +80,9 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"video", "photo"})
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $url;
 
@@ -59,7 +91,9 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"video", "photo"})
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $authorName;
 
@@ -67,6 +101,8 @@ class Bookmark implements ResourceInterface
      * @var \DateTimeInterface|null
      *
      * @ORM\Column(type="datetime")
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $addedAt;
 
@@ -75,7 +111,9 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="integer")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"video", "photo"})
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $width;
 
@@ -84,7 +122,9 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="integer")
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"video", "photo"})
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $height;
 
@@ -92,6 +132,10 @@ class Bookmark implements ResourceInterface
      * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Assert\NotBlank(groups={"video"})
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $duration;
 
@@ -101,6 +145,18 @@ class Bookmark implements ResourceInterface
     public function __construct()
     {
         $this->addedAt = new \DateTime();
+    }
+
+    /**
+     * Return dynamic validation groups.
+     *
+     * @param Bookmark $bookmark Contains the instance of Bookmark to validate.
+     *
+     * @return string[]
+     */
+    public static function validationGroups(Bookmark $bookmark)
+    {
+        return [$bookmark->getType()];
     }
 
     /**

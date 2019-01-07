@@ -5,6 +5,13 @@ parameters:
      sylius.form.type.admin_user.validation_groups: ["sylius"]
 
 services:
+    App\Form\Type\BookmarkType:
+        arguments:
+            - '%app.model.bookmark.class%'
+            - [video, photo]
+        tags:
+            - { name: form.type }
+
     App\Form\EventSubscriber\CustomerRegistrationFormSubscriber:
         arguments:
             - "@sylius.repository.customer"

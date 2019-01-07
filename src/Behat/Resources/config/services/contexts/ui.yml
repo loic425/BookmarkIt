@@ -41,7 +41,8 @@ services:
             - "@app.behat.page.frontend.bookmark.create_video"
             - "@app.behat.page.frontend.bookmark.create_photo"
             - "@app.behat.page.frontend.bookmark.index"
-            - "@app.behat.page.frontend.bookmark.update"
+            - "@app.behat.page.frontend.bookmark.update_video"
+            - "@app.behat.page.frontend.bookmark.update_photo"
             - "@app.behat.current_page_resolver"
         tags:
         - { name: fob.context_service }
