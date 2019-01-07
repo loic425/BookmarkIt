@@ -38,11 +38,6 @@ final class LoginContext implements Context
     private $loginPage;
 
     /**
-     * @var RegisterPage
-     */
-    private $registerPage;
-
-    /**
      * @var RequestPasswordResetPage
      */
     private $requestPasswordResetPage;
@@ -65,7 +60,6 @@ final class LoginContext implements Context
     /**
      * @param HomePage                     $homePage
      * @param LoginPage                    $loginPage
-     * @param RegisterPage                 $registerPage
      * @param RequestPasswordResetPage     $requestPasswordResetPage
      * @param ResetPasswordPage            $resetPasswordPage
      * @param NotificationCheckerInterface $notificationChecker
@@ -74,7 +68,6 @@ final class LoginContext implements Context
     public function __construct(
         HomePage $homePage,
         LoginPage $loginPage,
-        RegisterPage $registerPage,
         RequestPasswordResetPage $requestPasswordResetPage,
         ResetPasswordPage $resetPasswordPage,
         NotificationCheckerInterface $notificationChecker,
@@ -82,7 +75,6 @@ final class LoginContext implements Context
     ) {
         $this->homePage = $homePage;
         $this->loginPage = $loginPage;
-        $this->registerPage = $registerPage;
         $this->requestPasswordResetPage = $requestPasswordResetPage;
         $this->resetPasswordPage = $resetPasswordPage;
         $this->notificationChecker = $notificationChecker;
@@ -187,20 +179,6 @@ final class LoginContext implements Context
         $this->iSpecifyTheUsername($email);
         $this->iSpecifyThePasswordAs($password);
         $this->iLogIn();
-    }
-
-    /**
-     * @When I register with email :email and password :password
-     */
-    public function iRegisterWithEmailAndPassword($email, $password)
-    {
-        $this->registerPage->open();
-        $this->registerPage->specifyEmail($email);
-        $this->registerPage->specifyPassword($password);
-        $this->registerPage->verifyPassword($password);
-        $this->registerPage->specifyFirstName('Carrot');
-        $this->registerPage->specifyLastName('Ironfoundersson');
-        $this->registerPage->register();
     }
 
     /**

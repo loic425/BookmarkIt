@@ -15,17 +15,7 @@ Feature: Signing in to the website validation
         And I try to log in
         Then I should be notified about bad credentials
         And I should not be logged in
-
-    @ui
-    Scenario: Trying to sign in without confirming account
-        When I register with email "sylius@example.com" and password "sylius"
-        And I want to log in
-        And I specify the username as "sylius@example.com"
-        And I specify the password as "sylius"
-        And I try to log in
-        Then I should be notified about disabled account
-        And I should not be logged in
-
+        
     @ui
     Scenario: Trying to sign in after my account was deleted
         Given my account "ted@example.com" was deleted

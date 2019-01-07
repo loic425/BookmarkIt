@@ -27,7 +27,6 @@ services:
         arguments:
             - "@app.behat.page.frontend.home"
             - "@app.behat.page.frontend.account.login"
-            - "@app.behat.page.frontend.account.register"
             - "@app.behat.page.frontend.account.request_password_reset"
             - "@app.behat.page.frontend.account.reset_password"
             - "@app.behat.notification_checker"
