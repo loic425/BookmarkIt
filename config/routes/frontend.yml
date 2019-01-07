@@ -11,15 +11,8 @@ app_frontend_homepage:
         _controller: FrameworkBundle:Template:template
         template: 'frontend/homepage/index.html.twig'
 
-app_frontend_account:
-    resource: "frontend/account.yml"
-    prefix: "mon-compte"
-
 app_frontend_bookmark:
     resource: "frontend/bookmark.yml"
-
-sylius_security:
-    resource: "frontend/security.yml"
 
 app_frontend_partial:
     resource: "frontend/partial.yml"

@@ -6,13 +6,6 @@ app_frontend_login:
         _sylius:
             template: frontend/security/login.html.twig
 
-app_frontend_login_check:
-    path: /login-check
-    defaults:
-        _controller: sylius.controller.security:checkAction
-
-app_frontend_logout:
-    path: /logout
 
 app_frontend_user_check_action:
     path: /user-check

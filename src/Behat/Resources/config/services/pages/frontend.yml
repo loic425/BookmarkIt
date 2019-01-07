@@ -1,5 +1,4 @@
 imports:
-    - { resource: frontend/account.yml }
     - { resource: frontend/bookmark.yml }
 
 services:
