@@ -28,11 +28,6 @@ services:
         parent: app.behat.symfony_page
         public: false
 
-    app.behat.page.frontend.account.register:
-        class: App\Behat\Page\Frontend\Account\RegisterPage
-        parent: app.behat.symfony_page
-        public: false
-
     app.behat.page.frontend.account.request_password_reset:
         class: App\Behat\Page\Frontend\Account\RequestPasswordResetPage
         parent: app.behat.symfony_page
