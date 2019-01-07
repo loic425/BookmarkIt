@@ -4,6 +4,3 @@ sylius_resource:
             classes:
                 model: App\Entity\Bookmark
                 form: App\Form\Type\BookmarkType
-        app.oauth_client:
-            classes:
-                model: App\Entity\OAuth\Client
