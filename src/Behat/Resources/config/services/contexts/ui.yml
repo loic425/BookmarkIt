@@ -22,16 +22,6 @@ services:
         tags:
             - { name: fob.context_service }
 
-    app.behat.context.ui.frontend.login:
-        class: App\Behat\Context\Ui\Frontend\LoginContext
-        arguments:
-            - "@app.behat.page.frontend.home"
-            - "@app.behat.page.frontend.account.login"
-            - "@app.behat.notification_checker"
-            - "@app.behat.current_page_resolver"
-        tags:
-            - { name: fob.context_service }
-
     app.behat.context.ui.frontend.managing_bookmarks:
         class: App\Behat\Context\Ui\Frontend\ManagingBookmarksContext
         arguments:
