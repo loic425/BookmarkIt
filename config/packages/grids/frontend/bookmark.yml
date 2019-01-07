@@ -52,7 +52,7 @@ sylius_grid:
                                     route: app_frontend_bookmark_create_photo
                 item:
                     update:
-                        type: update_bookmark
+                        type: update
                     delete:
                         type: delete
                 bulk:

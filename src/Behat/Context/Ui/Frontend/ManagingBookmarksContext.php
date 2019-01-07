@@ -39,12 +39,7 @@ class ManagingBookmarksContext implements Context
     /**
      * @var UpdatePage
      */
-    private $updateVideoPage;
-
-    /**
-     * @var UpdatePage
-     */
-    private $updatePhotoPage;
+    private $updatePage;
 
     /**
      * @var CurrentPageResolverInterface
@@ -55,23 +50,20 @@ class ManagingBookmarksContext implements Context
      * @param CreatePage $createVideoPage
      * @param CreatePage $createPhotoPage
      * @param IndexPage $indexPage
-     * @param UpdatePage $updateVideoPage
-     * @param UpdatePage $updatePhotoPage
+     * @param UpdatePage $updatePage
      * @param CurrentPageResolverInterface $currentPageResolver
      */
     public function __construct(
         CreatePage $createVideoPage,
         CreatePage $createPhotoPage,
         IndexPage $indexPage,
-        UpdatePage $updateVideoPage,
-        UpdatePage $updatePhotoPage,
+        UpdatePage $updatePage,
         CurrentPageResolverInterface $currentPageResolver
     ) {
         $this->createVideoPage = $createVideoPage;
         $this->createPhotoPage = $createPhotoPage;
         $this->indexPage = $indexPage;
-        $this->updateVideoPage = $updateVideoPage;
-        $this->updatePhotoPage = $updatePhotoPage;
+        $this->updatePage = $updatePage;
         $this->currentPageResolver = $currentPageResolver;
     }
 
@@ -103,17 +95,7 @@ class ManagingBookmarksContext implements Context
      */
     public function iWantToModifyABookmark(Bookmark $bookmark)
     {
-        $updatePage = null;
-
-        if ('video' === $bookmark->getType()) {
-            $updatePage = $this->updateVideoPage;
-        } elseif ('photo' === $bookmark->getType()) {
-            $updatePage = $this->createPhotoPage;
-        } else {
-            throw new \InvalidArgumentException(sprintf('Bookmark type %s is incorrect', $bookmark->getType()));
-        }
-
-        $updatePage->open(['id' => $bookmark->getId()]);
+        $this->updatePage->open(['id' => $bookmark->getId()]);
     }
 
 
@@ -200,13 +182,7 @@ class ManagingBookmarksContext implements Context
      */
     public function iSaveMyChanges()
     {
-        /** @var UpdatePage $currentPage */
-        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
-            $this->updateVideoPage,
-            $this->updatePhotoPage
-        ]);
-
-        $currentPage->saveChanges();
+        $this->updatePage->saveChanges();
     }
 
     /**
@@ -270,8 +246,7 @@ class ManagingBookmarksContext implements Context
         $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
             $this->createVideoPage,
             $this->createPhotoPage,
-            $this->updateVideoPage,
-            $this->updatePhotoPage,
+            $this->updatePage,
         ]);
 
         Assert::same($currentPage->getValidationMessage($elementName), 'This value should not be blank.');

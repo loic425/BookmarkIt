@@ -11,6 +11,7 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Bookmark;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,6 +25,8 @@ class BookmarkType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+
+        $options['validation_groups'] = Bookmark::validationGroups($options['data']);
 
         $builder
             ->add('title', TextType::class, [
