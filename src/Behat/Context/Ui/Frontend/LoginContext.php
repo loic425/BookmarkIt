@@ -38,16 +38,6 @@ final class LoginContext implements Context
     private $loginPage;
 
     /**
-     * @var RequestPasswordResetPage
-     */
-    private $requestPasswordResetPage;
-
-    /**
-     * @var ResetPasswordPage
-     */
-    private $resetPasswordPage;
-
-    /**
      * @var NotificationCheckerInterface
      */
     private $notificationChecker;
@@ -60,23 +50,17 @@ final class LoginContext implements Context
     /**
      * @param HomePage                     $homePage
      * @param LoginPage                    $loginPage
-     * @param RequestPasswordResetPage     $requestPasswordResetPage
-     * @param ResetPasswordPage            $resetPasswordPage
      * @param NotificationCheckerInterface $notificationChecker
      * @param CurrentPageResolverInterface $currentPageResolver
      */
     public function __construct(
         HomePage $homePage,
         LoginPage $loginPage,
-        RequestPasswordResetPage $requestPasswordResetPage,
-        ResetPasswordPage $resetPasswordPage,
         NotificationCheckerInterface $notificationChecker,
         CurrentPageResolverInterface $currentPageResolver
     ) {
         $this->homePage = $homePage;
         $this->loginPage = $loginPage;
-        $this->requestPasswordResetPage = $requestPasswordResetPage;
-        $this->resetPasswordPage = $resetPasswordPage;
         $this->notificationChecker = $notificationChecker;
         $this->currentPageResolver = $currentPageResolver;
     }
@@ -90,36 +74,11 @@ final class LoginContext implements Context
     }
 
     /**
-     * @When I want to reset password
-     */
-    public function iWantToResetPassword()
-    {
-        $this->requestPasswordResetPage->open();
-    }
-
-    /**
-     * @When /^I follow link on my email to reset (my) password$/
-     */
-    public function iFollowLinkOnMyEmailToResetPassword(UserInterface $user)
-    {
-        $this->resetPasswordPage->open(['token' => $user->getPasswordResetToken()]);
-    }
-
-    /**
      * @When I specify the username as :username
      */
     public function iSpecifyTheUsername($username = null)
     {
         $this->loginPage->specifyUsername($username);
-    }
-
-    /**
-     * @When I specify the email as :email
-     * @When I do not specify the email
-     */
-    public function iSpecifyTheEmail($email = null)
-    {
-        $this->requestPasswordResetPage->specifyEmail($email);
     }
 
     /**
@@ -132,42 +91,12 @@ final class LoginContext implements Context
     }
 
     /**
-     * @When I specify my new password as :password
-     * @When I do not specify my new password
-     */
-    public function iSpecifyMyNewPassword(string $password = null)
-    {
-        $this->resetPasswordPage->specifyNewPassword($password);
-    }
-
-    /**
-     * @When I confirm my new password as :password
-     * @When I do not confirm my new password
-     */
-    public function iConfirmMyNewPassword(string $password = null)
-    {
-        $this->resetPasswordPage->specifyConfirmPassword($password);
-    }
-
-    /**
      * @When I log in
      * @When I try to log in
      */
     public function iLogIn()
     {
         $this->loginPage->logIn();
-    }
-
-    /**
-     * @When I reset it
-     * @When I try to reset it
-     */
-    public function iResetIt()
-    {
-        /** @var RequestPasswordResetPage|ResetPasswordPage $currentPage */
-        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([$this->requestPasswordResetPage, $this->resetPasswordPage]);
-
-        $currentPage->reset();
     }
 
     /**
@@ -223,14 +152,6 @@ final class LoginContext implements Context
     }
 
     /**
-     * @Then I should be notified that the :elementName is required
-     */
-    public function iShouldBeNotifiedThatElementIsRequired($elementName)
-    {
-        Assert::true($this->requestPasswordResetPage->checkValidationMessageFor($elementName, sprintf('Please enter your %s.', $elementName)));
-    }
-
-    /**
      * @Then I should be able to log in as :email with :password password
      * @Then the customer should be able to log in as :email with :password password
      */
@@ -250,27 +171,5 @@ final class LoginContext implements Context
     public function iShouldBeNotifiedThatMyPasswordHasBeenSuccessfullyReset()
     {
         $this->notificationChecker->checkNotification('has been reset successfully!', NotificationType::success());
-    }
-
-    /**
-     * @Then I should be notified that the entered passwords do not match
-     */
-    public function iShouldBeNotifiedThatTheEnteredPasswordsDoNotMatch()
-    {
-        Assert::true($this->resetPasswordPage->checkValidationMessageFor(
-            'password',
-            'The entered passwords don\'t match'
-        ));
-    }
-
-    /**
-     * @Then I should be notified that the password should be at least 4 characters long
-     */
-    public function iShouldBeNotifiedThatThePasswordShouldBeAtLeastCharactersLong()
-    {
-        Assert::true($this->resetPasswordPage->checkValidationMessageFor(
-            'password',
-            'Password must be at least 4 characters long.'
-        ));
     }
 }

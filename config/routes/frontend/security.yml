@@ -14,30 +14,6 @@ app_frontend_login_check:
 app_frontend_logout:
     path: /logout
 
-sylius_user_request_password_reset_token:
-    path: /forgotten-password
-    methods: [GET, POST]
-    defaults:
-        _controller: sylius.controller.app_user:requestPasswordResetTokenAction
-        _sylius:
-            template: frontend/account/requestPasswordReset.html.twig
-            redirect: app_frontend_login
-
-sylius_user_request_password_reset_pin:
-    path: /request-pin
-    methods: [GET, POST]
-    defaults:
-        _controller: sylius.controller.app_user:requestPasswordResetPinAction
-
-app_frontend_password_reset:
-    path: /forgotten-password/{token}
-    methods: [GET, POST]
-    defaults:
-        _controller: sylius.controller.app_user:resetPasswordAction
-        _sylius:
-            template: frontend/account/resetPassword.html.twig
-            redirect: app_frontend_login
-
 app_frontend_user_check_action:
     path: /user-check
     methods: [GET]
