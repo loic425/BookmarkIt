@@ -12,7 +12,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Serializer\Annotation as Serializer;
 
 trait IdentifiableTrait
 {
@@ -23,8 +23,7 @@ trait IdentifiableTrait
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @JMS\Expose
-     * @JMS\Groups({"Default"})
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     protected $id;
 

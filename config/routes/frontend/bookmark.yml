@@ -2,7 +2,7 @@ app_frontend_bookmark:
     resource: |
         alias: app.bookmark
         section: frontend
-        except: ['show']
+        except: ['show', 'create']
         redirect: update
         grid: app_frontend_bookmark
         vars:
@@ -16,7 +16,7 @@ app_frontend_bookmark:
     type: sylius.resource
 
 app_frontend_bookmark_create_video:
-    path: /bookmarks/video/new
+    path: /bookmarks/videos/new
     methods: [GET, POST]
     defaults:
         _controller: app.controller.bookmark:createAction
@@ -26,6 +26,9 @@ app_frontend_bookmark_create_video:
                 method: createTyped
                 arguments:
                     - video
+            form:
+                options:
+                    validation_groups: [video]
             template: frontend/crud/create.html.twig
             redirect: app_frontend_bookmark_update
             vars:
@@ -36,7 +39,7 @@ app_frontend_bookmark_create_video:
                     name: app_frontend_bookmark_create_video
 
 app_frontend_bookmark_create_photo:
-    path: /bookmarks/photo/new
+    path: /bookmarks/photos/new
     methods: [GET, POST]
     defaults:
         _controller: app.controller.bookmark:createAction
@@ -46,6 +49,9 @@ app_frontend_bookmark_create_photo:
                 method: createTyped
                 arguments:
                     - photo
+            form:
+                options:
+                    validation_groups: [photo]
             template: frontend/crud/create.html.twig
             redirect: app_frontend_bookmark_update
             vars:
