@@ -16,6 +16,8 @@ use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookmarkType extends AbstractResourceType
 {
@@ -25,8 +27,6 @@ class BookmarkType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-
-        $options['validation_groups'] = Bookmark::validationGroups($options['data']);
 
         $builder
             ->add('title', TextType::class, [
@@ -48,6 +48,20 @@ class BookmarkType extends AbstractResourceType
                 'label' => 'app.ui.duration',
             ])
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefaults([
+            'validation_groups' => function (Options $options) {
+                return Bookmark::validationGroups($options['data']);
+            }
+        ]);
     }
 
     /**

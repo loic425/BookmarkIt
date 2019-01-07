@@ -26,9 +26,6 @@ app_frontend_bookmark_create_video:
                 method: createTyped
                 arguments:
                     - video
-            form:
-                options:
-                    validation_groups: [video]
             template: frontend/crud/create.html.twig
             redirect: app_frontend_bookmark_update
             vars:
@@ -49,9 +46,6 @@ app_frontend_bookmark_create_photo:
                 method: createTyped
                 arguments:
                     - photo
-            form:
-                options:
-                    validation_groups: [photo]
             template: frontend/crud/create.html.twig
             redirect: app_frontend_bookmark_update
             vars:
