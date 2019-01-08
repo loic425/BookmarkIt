@@ -2,17 +2,16 @@ app:
     ui:
         added_date: Date d'ajout
         bookmarks: Bookmarks
-        create_user: Créer un utilisateur
         duration: Duration
         edit_bookmark: Edit bookmark
-        forgotten_password: Mot de passe oublié
         height: Height
-        legal_notices: Mentions légales
         manage_bookmarks: Manage bookmarks
         new_bookmark: New bookmark
-        overview_of_your_website: Overview of your website
         photo: Photo
+        tags: Tags
         url: Url
         validate: Validate
         video: Video
         width: Width
+sylius:
+    ui: ~
