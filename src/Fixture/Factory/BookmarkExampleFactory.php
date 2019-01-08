@@ -113,6 +113,9 @@ class BookmarkExampleFactory extends AbstractExampleFactory
 
                 return null;
             })
+
+            ->setDefault('tags', [])
+            ->setAllowedTypes('tags', ['array'])
         ;
     }
 
@@ -133,6 +136,10 @@ class BookmarkExampleFactory extends AbstractExampleFactory
         $bookMark->setWidth($options['width']);
         $bookMark->setHeight($options['height']);
         $bookMark->setDuration($options['duration']);
+
+        foreach ($options['tags'] as $tag) {
+            $bookMark->addTag($tag);
+        }
 
         return $bookMark;
     }

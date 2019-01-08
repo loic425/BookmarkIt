@@ -38,6 +38,7 @@ class BookmarkFixture extends AbstractResourceFixture
                 ->scalarNode('width')->cannotBeEmpty()->end()
                 ->scalarNode('height')->cannotBeEmpty()->end()
                 ->scalarNode('duration')->end()
+                ->arrayNode('tags')->prototype('scalar')->end()->end()
         ;
     }
 }

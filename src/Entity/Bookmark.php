@@ -140,9 +140,11 @@ class Bookmark implements ResourceInterface
     private $duration;
 
     /**
-     * @var array
+     * @var array|string[]
      *
      * @ORM\Column(type="json")
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $tags = [];
 
@@ -295,7 +297,7 @@ class Bookmark implements ResourceInterface
     }
 
     /**
-     * @return array
+     * @return array|string[]
      */
     public function getTags(): array
     {

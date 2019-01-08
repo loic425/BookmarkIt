@@ -7,5 +7,10 @@
     "width": 1280,
     "height": 1024,
     "duration": 118,
+    "tags": [
+        "movie",
+        "science-fiction",
+        "space battle"
+    ],
     "id": @integer@
 }
