@@ -143,6 +143,8 @@ class Bookmark implements ResourceInterface
      * @var array
      *
      * @ORM\Column(type="json")
+     *
+     * @Serializer\Groups({"Default", "Detailed"})
      */
     private $tags = [];
 
