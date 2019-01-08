@@ -476,12 +476,6 @@
     "sylius-labs/sensio-distribution-bundle": {
         "version": "v6.0.1"
     },
-    "sylius/customer": {
-        "version": "v1.2.1"
-    },
-    "sylius/customer-bundle": {
-        "version": "v1.2.1"
-    },
     "sylius/fixtures-bundle": {
         "version": "v1.2.1"
     },
@@ -507,12 +501,6 @@
         "version": "v1.2.1"
     },
     "sylius/ui-bundle": {
-        "version": "v1.2.1"
-    },
-    "sylius/user": {
-        "version": "v1.2.1"
-    },
-    "sylius/user-bundle": {
         "version": "v1.2.1"
     },
     "symfony/asset": {

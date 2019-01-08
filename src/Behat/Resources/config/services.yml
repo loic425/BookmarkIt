@@ -18,14 +18,6 @@ services:
         public: false
         factory: __behat__.mink:getSession
 
-    app.behat.admin_security:
-        class: App\Behat\Service\SecurityService
-        public: false
-        arguments:
-            - "@__symfony__.session"
-            - "@app.behat.cookie_setter"
-            - "admin"
-
     app.behat.cookie_setter:
         class: App\Behat\Service\Setter\CookieSetter
         public: false
