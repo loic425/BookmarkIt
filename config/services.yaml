@@ -5,8 +5,9 @@ parameters:
 
 imports:
     - { resource: services/_app.yml }
-    - { resource: services/factory.yml }
     - { resource: services/fixtures.yml }
     - { resource: services/fixtures_factories.yml }
     - { resource: services/form.yml }
     - { resource: services/installer.yml }
+    - { resource: services/subscriber.yml }
+    - { resource: services/updater.yml }

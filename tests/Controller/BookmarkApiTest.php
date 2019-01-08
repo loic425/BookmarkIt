@@ -22,23 +22,12 @@ class BookmarkApiTest extends JsonApiTestCase
     /**
      * @test
      */
-    public function it_does_not_allow_to_create_bookmark_video_without_specifying_required_data()
+    public function it_does_not_allow_to_create_bookmark_without_specifying_required_data()
     {
-        $this->client->request('POST', '/api/bookmarks/videos', [], [], static::getJsonHeader(), '{}');
+        $this->client->request('POST', '/api/bookmarks', [], [], static::getJsonHeader(), '{}');
 
         $response = $this->client->getResponse();
-        $this->assertResponse($response, 'bookmark/create_video_validation_fail_response', Response::HTTP_BAD_REQUEST);
-    }
-
-    /**
-     * @test
-     */
-    public function it_does_not_allow_to_create_bookmark_photo_without_specifying_required_data()
-    {
-        $this->client->request('POST', '/api/bookmarks/photos', [], [], static::getJsonHeader(), '{}');
-
-        $response = $this->client->getResponse();
-        $this->assertResponse($response, 'bookmark/create_photo_validation_fail_response', Response::HTTP_BAD_REQUEST);
+        $this->assertResponse($response, 'bookmark/create_validation_fail_response', Response::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -102,28 +91,6 @@ EOT;
 
         $response = $this->client->getResponse();
         $this->assertResponse($response, 'bookmark/show_response', Response::HTTP_OK);
-    }
-
-    /**
-     * @test
-     */
-    public function it_does_not_allow_to_remove_duration_from_bookmark_video()
-    {
-        $bookmarks = $this->loadFixturesFromFile('resources/bookmarks.yml');
-        $bookmark = $bookmarks['star_wars'];
-
-        $data =
-            <<<EOT
-        {
-            "duration": null
-        }
-EOT;
-
-        $this->client->request('PUT', $this->getBookmarkUrl($bookmark), [], [], static::getJsonHeader(), $data);
-
-        $response = $this->client->getResponse();
-
-        $this->assertResponse($response, 'bookmark/remove_duration_from_video_validation_fail_response', Response::HTTP_BAD_REQUEST);
     }
 
     /**

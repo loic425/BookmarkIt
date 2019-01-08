@@ -60,14 +60,6 @@ final class BookmarkContext implements Context
     }
 
     /**
-     * @Given there is (also )a :type bookmark titled :title
-     */
-    public function thereIsTypedBookmarkWithTitle(string $type, string $title)
-    {
-        $this->createBookmark(['type' => $type, 'title' => $title]);
-    }
-
-    /**
      * @param array $options
      */
     private function createBookmark(array $options)

@@ -12,15 +12,13 @@
 namespace App\Form\Type;
 
 use App\Entity\Bookmark;
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BookmarkType extends AbstractResourceType
+class BookmarkType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -30,23 +28,8 @@ class BookmarkType extends AbstractResourceType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('title', TextType::class, [
-                'label' => 'sylius.ui.title',
-            ])
             ->add('url', TextType::class, [
                 'label' => 'app.ui.url',
-            ])
-            ->add('authorName', TextType::class, [
-                'label' => 'sylius.ui.author',
-            ])
-            ->add('width', NumberType::class, [
-                'label' => 'app.ui.width',
-            ])
-            ->add('height', NumberType::class, [
-                'label' => 'app.ui.height',
-            ])
-            ->add('duration', NumberType::class, [
-                'label' => 'app.ui.duration',
             ])
             ->add('tags', CollectionType::class, [
                 'label' => 'app.ui.tags',
@@ -63,12 +46,8 @@ class BookmarkType extends AbstractResourceType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        parent::configureOptions($resolver);
-
         $resolver->setDefaults([
-            'validation_groups' => function (Options $options) {
-                return Bookmark::validationGroups($options['data']);
-            }
+            'data_class' => Bookmark::class,
         ]);
     }
 

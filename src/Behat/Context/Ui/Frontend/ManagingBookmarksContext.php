@@ -24,12 +24,7 @@ class ManagingBookmarksContext implements Context
     /**
      * @var CreatePage
      */
-    private $createVideoPage;
-
-    /**
-     * @var CreatePage
-     */
-    private $createPhotoPage;
+    private $createPage;
 
     /**
      * @var IndexPage
@@ -47,38 +42,29 @@ class ManagingBookmarksContext implements Context
     private $currentPageResolver;
 
     /**
-     * @param CreatePage $createVideoPage
-     * @param CreatePage $createPhotoPage
+     * @param CreatePage $createPage
      * @param IndexPage $indexPage
      * @param UpdatePage $updatePage
      * @param CurrentPageResolverInterface $currentPageResolver
      */
     public function __construct(
-        CreatePage $createVideoPage,
-        CreatePage $createPhotoPage,
+        CreatePage $createPage,
         IndexPage $indexPage,
         UpdatePage $updatePage,
         CurrentPageResolverInterface $currentPageResolver
     ) {
-        $this->createVideoPage = $createVideoPage;
-        $this->createPhotoPage = $createPhotoPage;
+        $this->createPage = $createPage;
         $this->indexPage = $indexPage;
         $this->updatePage = $updatePage;
         $this->currentPageResolver = $currentPageResolver;
     }
 
     /**
-     * @When I want to create a new :type bookmark
+     * @When I want to create a new bookmark
      */
-    public function iWantToCreateBookmark(string $type)
+    public function iWantToCreateBookmark()
     {
-        if ('video' === $type) {
-            $this->createVideoPage->open();
-        } elseif ('photo' === $type) {
-            $this->createPhotoPage->open();
-        } else {
-            throw new \InvalidArgumentException(sprintf('Bookmark type %s is incorrect', $type));
-        }
+        $this->createPage->open();
     }
 
     /**
@@ -98,67 +84,21 @@ class ManagingBookmarksContext implements Context
         $this->updatePage->open(['id' => $bookmark->getId()]);
     }
 
-
-    /**
-     * @When I specify its title as :title
-     * @When I do not specify its title
-     */
-    public function iSpecifyItsTitleAs(string $title = null)
-    {
-        $this->createVideoPage->specifyTitle($title);
-    }
-
     /**
      * @When I specify its url as :url
      * @When I do not specify its url
      */
     public function iSpecifyItsUrlAs(string $url = null)
     {
-        $this->createVideoPage->specifyUrl($url);
+        $this->createPage->specifyUrl($url);
     }
 
     /**
-     * @When I specify its author name as :authorName
-     * @When I do not specify its author name
+     * @When I change its url to :url
      */
-    public function iSpecifyItsAuthorNameAs(string $authorName = null)
+    public function iChangeItsUrlAs($url = null)
     {
-        $this->createVideoPage->specifyAuthorName($authorName);
-    }
-
-    /**
-     * @When I specify its width as :width
-     * @When I do not specify its width
-     */
-    public function iSpecifyItsWidthAs(string $width = null)
-    {
-        $this->createVideoPage->specifyWidth($width);
-    }
-
-    /**
-     * @When I specify its height as :height
-     * @When I do not specify its height
-     */
-    public function iSpecifyItsHeightAs(string $height = null)
-    {
-        $this->createVideoPage->specifyHeight($height);
-    }
-
-    /**
-     * @When I specify its duration as :duration
-     * @When I do not specify its duration
-     */
-    public function iSpecifyItsDurationAs(string $duration = null)
-    {
-        $this->createVideoPage->specifyDuration($duration);
-    }
-
-    /**
-     * @When I rename it to :title
-     */
-    public function iChangeItsTitleAs($title = null)
-    {
-        $this->updatePage->changeTitle($title);
+        $this->updatePage->ChangeUrl($url);
     }
 
     /**
@@ -167,13 +107,7 @@ class ManagingBookmarksContext implements Context
      */
     public function iAddIt()
     {
-        /** @var CreatePage $currentPage */
-        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
-            $this->createVideoPage,
-            $this->createPhotoPage
-        ]);
-
-        $currentPage->create();
+        $this->createPage->create();
     }
 
     /**
@@ -244,8 +178,7 @@ class ManagingBookmarksContext implements Context
     {
         /** @var CreatePage $currentPage */
         $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
-            $this->createVideoPage,
-            $this->createPhotoPage,
+            $this->createPage,
             $this->updatePage,
         ]);
 

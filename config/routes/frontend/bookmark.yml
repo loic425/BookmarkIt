@@ -2,7 +2,7 @@ app_frontend_bookmark:
     resource: |
         alias: app.bookmark
         section: frontend
-        except: ['show', 'create']
+        except: ['show']
         redirect: update
         grid: app_frontend_bookmark
         vars:
@@ -42,10 +42,6 @@ app_frontend_bookmark_create_photo:
         _controller: app.controller.bookmark:createAction
         _sylius:
             section: frontend
-            factory:
-                method: createTyped
-                arguments:
-                    - photo
             template: frontend/crud/create.html.twig
             redirect: app_frontend_bookmark_update
             vars:

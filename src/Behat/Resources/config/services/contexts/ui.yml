@@ -25,8 +25,7 @@ services:
     app.behat.context.ui.frontend.managing_bookmarks:
         class: App\Behat\Context\Ui\Frontend\ManagingBookmarksContext
         arguments:
-            - "@app.behat.page.frontend.bookmark.create_video"
-            - "@app.behat.page.frontend.bookmark.create_photo"
+            - "@app.behat.page.frontend.bookmark.create"
             - "@app.behat.page.frontend.bookmark.index"
             - "@app.behat.page.frontend.bookmark.update"
             - "@app.behat.current_page_resolver"
