@@ -2,7 +2,7 @@ App\Entity\Bookmark:
     star_wars:
         type: video
         title: Star Wars
-        url: http://example.com/star-wars
+        url: "https://vimeo.com/148551759"
         authorName: George Lucas
         width: 1280
         height: 1024
@@ -11,7 +11,7 @@ App\Entity\Bookmark:
     game_of_thrones:
         type: video
         title: Game of Thrones
-        url: http://example.com/game-of-thrones
+        url: "https://vimeo.com/100095868"
         authorName: George R.R. Martin
         width: 1280
         height: 1024
@@ -20,7 +20,7 @@ App\Entity\Bookmark:
     back_to_the_future:
         type: video
         title: Back to the Future
-        url: http://example.com/bttf
+        url: "https://vimeo.com/155616916"
         authorName: Robert Zemeckis
         width: 1280
         height: 1024

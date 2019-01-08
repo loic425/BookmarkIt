@@ -1,0 +1,12 @@
+{
+    "type": "video",
+    "title": "The New Vimeo Player (You Know, For Videos)",
+    "url": "https://vimeo.com/76979871",
+    "authorName": "Vimeo Staff",
+    "addedAt": "@string@.isDateTime()",
+    "width": 480,
+    "height": 270,
+    "duration": 62,
+    "tags": [],
+    "id": @integer@
+}
