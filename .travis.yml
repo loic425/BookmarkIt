@@ -17,6 +17,13 @@ matrix:
                 - TRAVIS_NODE_VERSION="7.5"
             services:
                 - memcached
+            addons:
+                apt:
+                    sources:
+                        - mysql-5.7-trusty
+                    packages:
+                        - mysql-server
+                        - mysql-client
         -
             sudo: false
             php: 7.2
