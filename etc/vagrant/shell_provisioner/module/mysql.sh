@@ -15,9 +15,11 @@ wget -O - http://www.percona.com/redir/downloads/RPM-GPG-KEY-percona | gpg --imp
 gpg --armor --export 9334A25F8507EFA5 | apt-key add -
 
 # Install server and client
-echo "percona-server-server-5.6 percona-server-server/root_password password vagrant" | debconf-set-selections
-echo "percona-server-server-5.6 percona-server-server/root_password_again password vagrant" | debconf-set-selections
-apt-get -y --force-yes install percona-server-server-5.6 percona-server-client-5.6
+export MYSQL_ROOT_PASSWORD=vagrant
+export DEBIAN_FRONTEND=noninteractive
+echo "percona-server-server-5.7 percona-server-server-5.7/root-pass password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
+echo "percona-server-server-5.7 percona-server-server-5.7/re-root-pass password $MYSQL_ROOT_PASSWORD" | debconf-set-selections
+apt install -y percona-server-server-5.7 percona-server-client-5.7
 
 # Configuration
 sed -i "s/\[mysqld\]/[mysqld]\ninnodb_file_per_table = 1/" /etc/mysql/my.cnf

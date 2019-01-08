@@ -2,37 +2,16 @@ app:
     ui:
         added_date: Date d'ajout
         bookmarks: Marques-pages
-        create_user: Créer un utilisateur
         duration: Durée
         edit_bookmark: Modifier le marque page
-        forgotten_password: Mot de passe oublié
         height: Hauteur
-        legal_notices: Mentions légales
         manage_bookmarks: Gérer les marques-pages
         new_bookmark: Nouveau marque page
-        overview_of_your_website: Aperçu de votre site web
         photo: Photo
+        tags: Mots-clés
         url: Url
         validate: Valider
         video: Vidéo
         width: Largeur
-    text:
-        error:
-            500:
-                title: Erreur
-                content: |
-                    <p>Quelque chose est cassé.<br />
-                    Merci de nous envoyer un email et écrivez ce que vous faisiez avant de rencontrer cette erreur.<br />
-                    Nous corrigerons aussi vite que possible. Désolé pour la gêne occasionnée.</p>
-            404:
-                title: Erreur 404
-                content: |
-                    <p>Oups, on dirait que ce que vous recherchez n'est pas ici...</p>
-        legal_notices: Toute reproduction interdite
-    emails:
-        footer: |
-            <p>A bientôt sur BookmarkIt.fr</p>
-            <p>Attention : cet email est envoyé automatiquement, si vous souhaitez nous contacter,
-            vous pouvez nous écrire en cliquant <a href=\"%LINK%\">ici</a>.</p>
 sylius:
     ui: ~

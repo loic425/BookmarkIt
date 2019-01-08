@@ -140,6 +140,13 @@ class Bookmark implements ResourceInterface
     private $duration;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $tags = [];
+
+    /**
      * BookMark constructor.
      */
     public function __construct()
@@ -285,5 +292,44 @@ class Bookmark implements ResourceInterface
     public function setDuration(?int $duration): void
     {
         $this->duration = $duration;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param string $tag
+     *
+     * @return bool
+     */
+    public function hasTag(string $tag): bool
+    {
+        return in_array($tag, $this->tags, true);
+    }
+
+    /**
+     * @param string $tag
+     */
+    public function addTag(string $tag): void
+    {
+        if (!$this->hasTag($tag)) {
+            $this->tags[] = $tag;
+        }
+    }
+
+    /**
+     * @param string $tag
+     */
+    public function removeTag(string $tag): void
+    {
+        if (false !== $key = array_search($tag, $this->tags, true)) {
+            unset($this->tags[$key]);
+            $this->tags = array_values($this->tags);
+        }
     }
 }

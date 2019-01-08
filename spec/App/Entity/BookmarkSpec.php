@@ -96,4 +96,22 @@ class BookmarkSpec extends ObjectBehavior
         $this->setDuration(118);
         $this->getDuration()->shouldReturn(118);
     }
+
+    function it_initializes_tags_array_by_default(): void
+    {
+        $this->getTags()->shouldReturn([]);
+    }
+
+    function it_adds_tags(): void
+    {
+        $this->addTag('movie');
+        $this->hasTag('movie')->shouldReturn(true);
+    }
+
+    function it_removes_tags(): void
+    {
+        $this->addTag('movie');
+        $this->removeTag('movie');
+        $this->hasTag('movie')->shouldReturn(false);
+    }
 }

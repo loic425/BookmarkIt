@@ -13,6 +13,7 @@ namespace App\Form\Type;
 
 use App\Entity\Bookmark;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -46,6 +47,13 @@ class BookmarkType extends AbstractResourceType
             ])
             ->add('duration', NumberType::class, [
                 'label' => 'app.ui.duration',
+            ])
+            ->add('tags', CollectionType::class, [
+                'label' => 'app.ui.tags',
+                'entry_type' => TextType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
         ;
     }
