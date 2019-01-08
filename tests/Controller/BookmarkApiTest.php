@@ -140,7 +140,7 @@ EOT;
     /**
      * @test
      */
-    public function it_allows_updating_bookmark()
+    public function it_allows_updating_bookmark_title()
     {
         $bookmarks = $this->loadFixturesFromFile('resources/bookmarks.yml');
         $bookmark = $bookmarks['star_wars'];
@@ -157,6 +157,28 @@ EOT;
         $response = $this->client->getResponse();
 
         $this->assertResponse($response, 'bookmark/update_response', Response::HTTP_OK);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_updating_bookmark_tags()
+    {
+        $bookmarks = $this->loadFixturesFromFile('resources/bookmarks.yml');
+        $bookmark = $bookmarks['star_wars'];
+
+        $data =
+            <<<EOT
+        {
+            "tags": ["top movie"]
+        }
+EOT;
+
+        $this->client->request('PUT', $this->getBookmarkUrl($bookmark), [], [], static::getJsonHeader(), $data);
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponse($response, 'bookmark/update_tags_response', Response::HTTP_OK);
     }
 
     /**
