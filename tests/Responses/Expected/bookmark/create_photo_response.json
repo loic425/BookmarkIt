@@ -1,0 +1,12 @@
+{
+    "type": "photo",
+    "title": "ZB8T0193",
+    "url": "http://www.flickr.com/photos/bees/2341623661/",
+    "authorName": "@string@",
+    "addedAt": "@string@.isDateTime()",
+    "width": 1024,
+    "height": 683,
+    "duration": null,
+    "tags": [],
+    "id": @integer@
+}

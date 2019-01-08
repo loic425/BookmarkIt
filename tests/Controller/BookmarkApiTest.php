@@ -33,18 +33,12 @@ class BookmarkApiTest extends JsonApiTestCase
     /**
      * @test
      */
-    public function it_allows_to_create_bookmark()
+    public function it_allows_to_create_video_bookmark()
     {
         $data =
             <<<EOT
         {
-            "type": "video",
-            "title": "Star Wars",
-            "url": "http://example.com/star-wars",
-            "authorName": "George Lucas",
-            "width": 1280,
-            "height": 1024,
-            "duration": 118
+            "url": "https://vimeo.com/76979871"
         }
 EOT;
 
@@ -52,7 +46,26 @@ EOT;
 
         $response = $this->client->getResponse();
 
-        $this->assertResponse($response, 'bookmark/create_response', Response::HTTP_CREATED);
+        $this->assertResponse($response, 'bookmark/create_video_response', Response::HTTP_CREATED);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_to_create_photo_bookmark()
+    {
+        $data =
+            <<<EOT
+        {
+            "url": "http://www.flickr.com/photos/bees/2341623661/"
+        }
+EOT;
+
+        $this->client->request('POST', '/api/bookmarks', [], [], static::getJsonHeader(), $data);
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponse($response, 'bookmark/create_photo_response', Response::HTTP_CREATED);
     }
 
     /**
@@ -107,7 +120,7 @@ EOT;
     /**
      * @test
      */
-    public function it_allows_updating_bookmark_title()
+    public function it_allows_updating_bookmark_url()
     {
         $bookmarks = $this->loadFixturesFromFile('resources/bookmarks.yml');
         $bookmark = $bookmarks['star_wars'];
@@ -115,7 +128,7 @@ EOT;
         $data =
             <<<EOT
         {
-            "title": "Star Wars: Empire strikes back"
+            "url": "https://vimeo.com/155616916"
         }
 EOT;
 

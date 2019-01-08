@@ -11,10 +11,14 @@
 
 namespace App\EventSubscriber;
 
+use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\Bookmark;
 use App\Updater\BookmarkUpdater;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Webmozart\Assert\Assert;
 
 class UpdateBookmarkSubscriber implements EventSubscriberInterface
@@ -38,19 +42,35 @@ class UpdateBookmarkSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'app.bookmark.pre_create' => 'updateBookmarkDetails',
-            'app.bookmark.pre_update' => 'updateBookmarkDetails',
+            'app.bookmark.pre_create' => 'updateBookmarkFromGenericEvent',
+            'app.bookmark.pre_update' => 'updateBookmarkFromGenericEvent',
+            KernelEvents::VIEW => ['updateBookmarkFromApiEvent', EventPriorities::PRE_WRITE],
         ];
     }
 
-    /**
-     * @param GenericEvent $event
-     */
-    public function updateBookmarkDetails(GenericEvent $event)
+    public function updateBookmarkFromGenericEvent(GenericEvent $event)
     {
         $bookmark = $event->getSubject();
         Assert::isInstanceOf($bookmark, Bookmark::class);
+        $this->updateBookmarkDetails($bookmark);
+    }
 
+    public function updateBookmarkFromApiEvent(GetResponseForControllerResultEvent $event)
+    {
+        $bookmark = $event->getControllerResult();
+
+        if (!$bookmark instanceof Bookmark) {
+            return;
+        }
+
+        $this->updateBookmarkDetails($bookmark);
+    }
+
+    /**
+     * @param Bookmark $bookmark
+     */
+    public function updateBookmarkDetails(Bookmark $bookmark)
+    {
         $this->updater->update($bookmark);
     }
 }

@@ -2,7 +2,7 @@
     {
         "type": "video",
         "title": "Star Wars",
-        "url": "http://example.com/star-wars",
+        "url": "https://vimeo.com/148551759",
         "authorName": "George Lucas",
         "addedAt": "@string@.isDateTime()",
         "width": 1280,
@@ -18,7 +18,7 @@
     {
         "type": "video",
         "title": "Game of Thrones",
-        "url": "http://example.com/game-of-thrones",
+        "url": "https://vimeo.com/100095868",
         "authorName": "George R.R. Martin",
         "addedAt": "@string@.isDateTime()",
         "width": 1280,
@@ -32,7 +32,7 @@
     {
         "type": "video",
         "title": "Back to the Future",
-        "url": "http://example.com/bttf",
+        "url": "https://vimeo.com/155616916",
         "authorName": "Robert Zemeckis",
         "addedAt": "@string@.isDateTime()",
         "width": 1280,
