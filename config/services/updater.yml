@@ -1,0 +1,5 @@
+services:
+    App\Updater\BookmarkUpdater:
+        arguments:
+            - '@eight_points_guzzle.client.flickr'
+            - '@eight_points_guzzle.client.vimeo'

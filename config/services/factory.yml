@@ -1,5 +1,0 @@
-services:
-    App\Factory\BookmarkFactory:
-        decorates: app.factory.bookmark
-        arguments:
-        - '@App\Factory\BookmarkFactory.inner'

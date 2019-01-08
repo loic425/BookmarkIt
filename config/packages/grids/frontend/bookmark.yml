@@ -33,23 +33,7 @@ sylius_grid:
             actions:
                 main:
                     create:
-                        type: links
-                        label: sylius.ui.create
-                        options:
-                            class: primary
-                            icon: plus
-                            header:
-                                icon: cube
-                                label: sylius.ui.type
-                            links:
-                                video:
-                                    label: app.ui.video
-                                    icon: video
-                                    route: app_frontend_bookmark_create_video
-                                photo:
-                                    label: app.ui.photo
-                                    icon: photo
-                                    route: app_frontend_bookmark_create_photo
+                        type: create
                 item:
                     update:
                         type: update

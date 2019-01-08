@@ -1,0 +1,6 @@
+services:
+    App\EventSubscriber\UpdateBookmarkSubscriber:
+        arguments:
+            - '@App\Updater\BookmarkUpdater'
+        tags:
+            - { name: kernel.event_subscriber }

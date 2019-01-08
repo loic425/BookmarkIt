@@ -8,17 +8,11 @@ services:
     #        class: App\Directory\ClassName
     #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
-    app.behat.page.frontend.bookmark.create_video:
+    app.behat.page.frontend.bookmark.create:
         class: App\Behat\Page\Frontend\Bookmark\CreatePage
         parent: app.behat.page.frontend.crud.create
         public: false
-        arguments: ["app_frontend_bookmark_create_video"]
-
-    app.behat.page.frontend.bookmark.create_photo:
-        class: App\Behat\Page\Frontend\Bookmark\CreatePage
-        parent: app.behat.page.frontend.crud.create
-        public: false
-        arguments: ["app_frontend_bookmark_create_photo"]
+        arguments: ["app_frontend_bookmark_create"]
 
     app.behat.page.frontend.bookmark.index:
         class: App\Behat\Page\Frontend\Bookmark\IndexPage
