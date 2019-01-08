@@ -12,3 +12,13 @@ sylius_fixtures:
                 bookmark:
                     options:
                         random: 20
+                        custom:
+                            -
+                                type: video
+                                title: Star Wars
+                                author_name: George Lucas
+                                tags:
+                                    - movie
+                                    - science fiction
+                                    - space battle
+                                added_at: today
