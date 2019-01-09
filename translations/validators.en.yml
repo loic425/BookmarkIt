@@ -1,0 +1,4 @@
+app:
+    bookmark:
+        url:
+            unique: This url already exists.

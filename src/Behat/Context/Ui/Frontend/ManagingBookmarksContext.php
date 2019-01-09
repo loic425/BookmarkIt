@@ -228,6 +228,20 @@ class ManagingBookmarksContext implements Context
     }
 
     /**
+     * @Then I should be notified that the url already exists
+     */
+    public function iShouldBeNotifiedThatUrlAlreadyExists()
+    {
+        /** @var CreatePage $currentPage */
+        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
+            $this->createPage,
+            $this->updatePage,
+        ]);
+
+        Assert::same($currentPage->getValidationMessage('url'), 'This url already exists.');
+    }
+
+    /**
      * @Then this bookmark should not be added
      */
     public function thisBookmarkShouldNotBeAdded()
