@@ -19,4 +19,5 @@ use Symfony\Component\Validator\Constraint;
 class OembedUrl extends Constraint
 {
     public $domainNotSupported = 'The domain "{{ string }}" is not supported.';
+    public $urlNotSupported = 'The url "{{ string }}" is not supported.';
 }
