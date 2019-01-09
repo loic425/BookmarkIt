@@ -10,7 +10,6 @@
 
 namespace App\Client;
 
-
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 

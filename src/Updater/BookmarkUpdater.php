@@ -12,7 +12,6 @@ namespace App\Updater;
 
 use App\Client\OembedClientRegistry;
 use App\Entity\Bookmark;
-use GuzzleHttp\Client;
 
 class BookmarkUpdater
 {
@@ -41,8 +40,8 @@ class BookmarkUpdater
         $bookmark->setType($data['type']);
         $bookmark->setTitle($data['title']);
         $bookmark->setAuthorName($data['author_name']);
-        $bookmark->setWidth((int)$data['width']);
-        $bookmark->setHeight((int)$data['height']);
-        $bookmark->setDuration(isset($data['duration']) ? (int)$data['duration'] : null);
+        $bookmark->setWidth((int) $data['width']);
+        $bookmark->setHeight((int) $data['height']);
+        $bookmark->setDuration(isset($data['duration']) ? (int) $data['duration'] : null);
     }
 }

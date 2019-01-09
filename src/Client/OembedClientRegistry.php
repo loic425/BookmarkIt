@@ -27,7 +27,7 @@ class OembedClientRegistry
     }
 
     /**
-     * @param string $domain
+     * @param string                $domain
      * @param OembedClientInterface $client
      */
     public function addClient(string $domain, OembedClientInterface $client): void

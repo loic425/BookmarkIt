@@ -56,7 +56,7 @@ final class BookmarkContext implements Context
      */
     public function thereIsBookmarkWithTitle(string $title)
     {
-       $this->createBookmark(['title' => $title]);
+        $this->createBookmark(['title' => $title]);
     }
 
     /**

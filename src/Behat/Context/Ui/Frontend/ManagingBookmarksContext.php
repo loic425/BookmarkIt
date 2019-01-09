@@ -42,9 +42,9 @@ class ManagingBookmarksContext implements Context
     private $currentPageResolver;
 
     /**
-     * @param CreatePage $createPage
-     * @param IndexPage $indexPage
-     * @param UpdatePage $updatePage
+     * @param CreatePage                   $createPage
+     * @param IndexPage                    $indexPage
+     * @param UpdatePage                   $updatePage
      * @param CurrentPageResolverInterface $currentPageResolver
      */
     public function __construct(
@@ -169,7 +169,6 @@ class ManagingBookmarksContext implements Context
     {
         Assert::false($this->indexPage->isSingleResourceOnPage(['title' => $title]));
     }
-
 
     /**
      * @Then I should be notified that the :elementName is required

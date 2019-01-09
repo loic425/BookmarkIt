@@ -58,5 +58,4 @@ class BookmarkType extends AbstractType
     {
         return 'app_bookmark';
     }
-
 }
