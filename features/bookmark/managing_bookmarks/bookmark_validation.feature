@@ -1,7 +1,7 @@
 @managing_bookmarks
 Feature: Bookmarks validation
     In order to avoid making mistakes when managing bookmarks
-    As an Visitor
+    As a Visitor
     I want to be prevented from adding it without specifying required fields
 
     @ui
@@ -18,4 +18,12 @@ Feature: Bookmarks validation
         When I specify its url as "not valid url"
         And I try to add it
         Then I should be notified that the url is not valid
+        And this bookmark should not be added
+
+    @ui
+    Scenario: Trying to add a new bookmark with a not supported domain
+        Given I want to create a new bookmark
+        When I specify its url as "http://example.com"
+        And I try to add it
+        Then I should be notified that the domain "example.com" is not supported
         And this bookmark should not be added

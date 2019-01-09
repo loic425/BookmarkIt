@@ -200,6 +200,20 @@ class ManagingBookmarksContext implements Context
     }
 
     /**
+     * @Then I should be notified that the domain :domain is not supported
+     */
+    public function iShouldBeNotifiedThatDomainIsNotSupported(string $domain)
+    {
+        /** @var CreatePage $currentPage */
+        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
+            $this->createPage,
+            $this->updatePage,
+        ]);
+
+        Assert::same($currentPage->getValidationMessage('url'), sprintf('The domain "%s" is not supported.', $domain));
+    }
+
+    /**
      * @Then this bookmark should not be added
      */
     public function thisBookmarkShouldNotBeAdded()

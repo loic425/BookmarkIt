@@ -1,0 +1,6 @@
+services:
+    App\Validator\Constraints\OembedUrlValidator:
+        arguments:
+            - '@App\Client\OembedClientRegistry'
+        tags:
+            - { name: validator.constraint_validator }

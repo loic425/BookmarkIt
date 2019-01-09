@@ -1,7 +1,7 @@
 @managing_bookmarks
 Feature: Deleting multiple bookmarks
     In order to get rid of spam bookmarks in an efficient way
-    As an Visitor
+    As a Visitor
     I want to be able to delete multiple bookmarks at once
 
     Background:

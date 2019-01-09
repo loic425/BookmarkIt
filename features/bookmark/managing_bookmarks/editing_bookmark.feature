@@ -1,7 +1,7 @@
 @managing_bookmarks
 Feature: Editing bookmark
     In order to change bookmark details
-    As an Visitor
+    As a Visitor
     I want to be able to edit a bookmark
 
     @ui
