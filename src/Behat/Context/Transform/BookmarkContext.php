@@ -45,6 +45,7 @@ class BookmarkContext implements Context
             $bookmark,
             sprintf('Bookmark with title "%s" does not exist', $title)
         );
+
         return $bookmark;
     }
 }

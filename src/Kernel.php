@@ -11,7 +11,6 @@
 
 namespace App;
 
-use App\DependencyInjection\Compiler\ServicesPass;
 use PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
