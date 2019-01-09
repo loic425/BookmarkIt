@@ -27,3 +27,11 @@ Feature: Bookmarks validation
         And I try to add it
         Then I should be notified that the domain "example.com" is not supported
         And this bookmark should not be added
+
+    @ui
+    Scenario: Trying to add a new bookmark with a not supported url
+        Given I want to create a new bookmark
+        When I specify its url as "http://www.flickr.com/photos/bees/0/"
+        And I try to add it
+        Then I should be notified that the url "http://www.flickr.com/photos/bees/0/" is not supported
+        And this bookmark should not be added

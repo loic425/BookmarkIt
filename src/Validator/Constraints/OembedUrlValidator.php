@@ -12,6 +12,8 @@
 namespace App\Validator\Constraints;
 
 use App\Client\OembedClientRegistry;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -61,6 +63,16 @@ class OembedUrlValidator extends ConstraintValidator
         if (null === $client) {
             $this->context->buildViolation($constraint->domainNotSupported)
                 ->setParameter('{{ string }}', $domain)
+                ->addViolation();
+
+            return;
+        }
+
+        try  {
+            $client->request($value);
+        } catch (BadResponseException $exception) {
+            $this->context->buildViolation($constraint->urlNotSupported)
+                ->setParameter('{{ string }}', $value)
                 ->addViolation();
         }
     }

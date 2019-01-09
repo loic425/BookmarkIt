@@ -2,8 +2,10 @@
 
 namespace spec\App\Validator\Constraints;
 
+use App\Client\OembedClientInterface;
 use App\Client\OembedClientRegistry;
 use App\Validator\Constraints\OembedUrl;
+use GuzzleHttp\Exception\BadResponseException;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -70,6 +72,25 @@ class OembedUrlValidatorSpec extends ObjectBehavior
 
         $context->buildViolation('The domain "{{ string }}" is not supported.')->shouldBeCalled();
         $violationBuilder->setParameter('{{ string }}', 'example.com')->shouldBeCalled();
+        $violationBuilder->addViolation()->shouldBeCalled();
+
+        $this->validate('http://example.com', $constraint);
+    }
+
+    function it_builds_a_violation_when_url_is_not_supported(
+        OembedUrl $constraint,
+        OembedClientRegistry $clientRegistry,
+        OembedClientInterface $client,
+        ExecutionContextInterface $context,
+        ConstraintViolationBuilderInterface $violationBuilder
+    ): void {
+        $clientRegistry->getClient('example.com')->willReturn($client);
+        $context->buildViolation('The url "{{ string }}" is not supported.')->willReturn($violationBuilder);
+        $violationBuilder->setParameter('{{ string }}', 'http://example.com')->willReturn($violationBuilder);
+        $client->request('http://example.com')->willThrow(BadResponseException::class);
+
+        $context->buildViolation('The url "{{ string }}" is not supported.')->shouldBeCalled();
+        $violationBuilder->setParameter('{{ string }}', 'http://example.com')->shouldBeCalled();
         $violationBuilder->addViolation()->shouldBeCalled();
 
         $this->validate('http://example.com', $constraint);

@@ -214,6 +214,20 @@ class ManagingBookmarksContext implements Context
     }
 
     /**
+     * @Then I should be notified that the url :url is not supported
+     */
+    public function iShouldBeNotifiedThatUrlIsNotSupported(string $url)
+    {
+        /** @var CreatePage $currentPage */
+        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
+            $this->createPage,
+            $this->updatePage,
+        ]);
+
+        Assert::same($currentPage->getValidationMessage('url'), sprintf('The url "%s" is not supported.', $url));
+    }
+
+    /**
      * @Then this bookmark should not be added
      */
     public function thisBookmarkShouldNotBeAdded()
