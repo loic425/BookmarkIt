@@ -50,6 +50,12 @@ class OembedUrlValidator extends ConstraintValidator
         }
 
         $domain = parse_url($value, PHP_URL_HOST);
+
+        // Url Validator should validate that
+        if (null === $domain) {
+            return;
+        }
+
         $client = $this->clientRegistry->getClient($domain);
 
         if (null === $client) {
