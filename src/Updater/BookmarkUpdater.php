@@ -22,8 +22,7 @@ class BookmarkUpdater
     private $clientRegistry;
 
     /**
-     * @param Client $photoClient
-     * @param Client $videoClient
+     * @param OembedClientRegistry $clientRegistry
      */
     public function __construct(OembedClientRegistry $clientRegistry)
     {

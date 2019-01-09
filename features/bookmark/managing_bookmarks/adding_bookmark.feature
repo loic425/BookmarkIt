@@ -1,7 +1,7 @@
 @managing_bookmarks
 Feature: Adding a new bookmark
     In order to extend bookmarks database
-    As an Visitor
+    As a Visitor
     I want to add a new bookmark
 
     @ui

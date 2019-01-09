@@ -12,3 +12,4 @@ imports:
     - { resource: services/installer.yml }
     - { resource: services/subscriber.yml }
     - { resource: services/updater.yml }
+    - { resource: services/validator.yml }

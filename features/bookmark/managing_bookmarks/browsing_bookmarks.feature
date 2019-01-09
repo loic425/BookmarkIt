@@ -1,7 +1,7 @@
 @managing_bookmarks
 Feature: Browsing bookmarks
     In order to manage bookmarks in the website
-    As an Visitor
+    As a Visitor
     I want to browse bookmarks
 
     Background:

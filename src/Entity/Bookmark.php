@@ -12,6 +12,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Validator\Constraints as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Serializer\Annotation as Serializer;
@@ -56,8 +57,6 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(groups={"video", "photo"})
-     *
      * @Serializer\Groups({"Default", "Detailed"})
      */
     private $title;
@@ -69,6 +68,7 @@ class Bookmark implements ResourceInterface
      *
      * @Assert\NotBlank()
      * @Assert\Url()
+     * @CustomAssert\OembedUrl
      *
      * @Serializer\Groups({"Default", "Detailed"})
      */

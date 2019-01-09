@@ -1,7 +1,7 @@
 @managing_bookmarks
 Feature: Deleting a bookmark
     In order to get rid of deprecated bookmarks
-    As an Visitor
+    As a Visitor
     I want to be able to delete bookmarks
 
     Background:
