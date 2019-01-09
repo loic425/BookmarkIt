@@ -10,34 +10,33 @@
 
 namespace App\Updater;
 
+use App\Client\OembedClientRegistry;
 use App\Entity\Bookmark;
 use GuzzleHttp\Client;
 
 class BookmarkUpdater
 {
     /**
-     * @var Client
+     * @var OembedClientRegistry
      */
-    private $photoClient;
-
-    /**
-     * @var Client
-     */
-    private $videoClient;
+    private $clientRegistry;
 
     /**
      * @param Client $photoClient
      * @param Client $videoClient
      */
-    public function __construct(Client $photoClient, Client $videoClient)
+    public function __construct(OembedClientRegistry $clientRegistry)
     {
-        $this->photoClient = $photoClient;
-        $this->videoClient = $videoClient;
+        $this->clientRegistry = $clientRegistry;
     }
 
     public function update(Bookmark $bookmark): void
     {
-        $response = $this->request($bookmark->getUrl());
+        $url = $bookmark->getUrl();
+        $domain = parse_url($url, PHP_URL_HOST);
+        $client = $this->clientRegistry->getClient($domain);
+
+        $response = $client->request($bookmark->getUrl());
 
         $data = json_decode($response->getBody()->getContents(), true);
         $bookmark->setType($data['type']);
@@ -46,18 +45,5 @@ class BookmarkUpdater
         $bookmark->setWidth((int)$data['width']);
         $bookmark->setHeight((int)$data['height']);
         $bookmark->setDuration(isset($data['duration']) ? (int)$data['duration'] : null);
-    }
-
-    private function request(string $url)
-    {
-        if (false !== strpos($url, 'photos')) {
-            $uri = sprintf('/services/oembed?format=json&url=%s', $url);
-
-            return $this->photoClient->get($uri);
-        }
-
-        $uri = sprintf('/api/oembed.json?url=%s', $url);
-
-        return $this->videoClient->get($uri);
     }
 }

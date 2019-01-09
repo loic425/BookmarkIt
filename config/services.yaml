@@ -5,6 +5,7 @@ parameters:
 
 imports:
     - { resource: services/_app.yml }
+    - { resource: services/client.yml }
     - { resource: services/fixtures.yml }
     - { resource: services/fixtures_factories.yml }
     - { resource: services/form.yml }

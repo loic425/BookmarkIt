@@ -1,0 +1,23 @@
+services:
+    app.client.flickr:
+        class: App\Client\OembedClient
+        arguments:
+            - '@eight_points_guzzle.client.flickr'
+            - '/services/oembed?format=json&url=%s'
+
+    app.client.vimeo:
+        class: App\Client\OembedClient
+        arguments:
+            - '@eight_points_guzzle.client.vimeo'
+            - '/api/oembed.json?url=%s'
+
+    App\Client\OembedClientRegistry:
+        calls:
+            -   method: addClient
+                arguments:
+                    - 'www.flickr.com'
+                    - '@app.client.flickr'
+            -   method: addClient
+                arguments:
+                    - 'vimeo.com'
+                    - '@app.client.vimeo'

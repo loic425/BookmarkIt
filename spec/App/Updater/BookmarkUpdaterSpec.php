@@ -2,6 +2,8 @@
 
 namespace spec\App\Updater;
 
+use App\Client\OembedClientInterface;
+use App\Client\OembedClientRegistry;
 use App\Entity\Bookmark;
 use GuzzleHttp\Client;
 use PhpSpec\ObjectBehavior;
@@ -11,20 +13,22 @@ use Psr\Http\Message\StreamInterface;
 
 class BookmarkUpdaterSpec extends ObjectBehavior
 {
-    function let(Client $photoClient, Client $videoClient)
+    function let(OembedClientRegistry $clientRegistry)
     {
-        $this->beConstructedWith($photoClient, $videoClient);
+        $this->beConstructedWith($clientRegistry);
     }
 
     function it_update_photo_book_mark(
         Bookmark $bookMark,
-        Client $photoClient,
+        OembedClientRegistry $clientRegistry,
+        OembedClientInterface $client,
         ResponseInterface $response,
         StreamInterface $body
     ): void {
-        $bookMark->getUrl()->willReturn("http://www.flickr.com/photos/bees/2341623661/");
-
-        $photoClient->get(Argument::type('string'))->willReturn($response);
+        $url = "http://www.flickr.com/photos/bees/2341623661/";
+        $bookMark->getUrl()->willReturn($url);
+        $clientRegistry->getClient('www.flickr.com')->willReturn($client);
+        $client->request($url)->willReturn($response);
         $response->getBody()->willReturn($body);
         $body->getContents()->willReturn(<<<EOM
 {
@@ -49,13 +53,17 @@ EOM
 
     function it_update_video_book_mark(
         Bookmark $bookMark,
-        Client $videoClient,
+        OembedClientRegistry $clientRegistry,
+        OembedClientInterface $client,
         ResponseInterface $response,
         StreamInterface $body
     ): void {
-        $bookMark->getUrl()->willReturn("https://vimeo.com/76979871");
+        $url = "https://vimeo.com/76979871";
+        $bookMark->getUrl()->willReturn($url);
 
-        $videoClient->get(Argument::type('string'))->willReturn($response);
+        $bookMark->getUrl()->willReturn($url);
+        $clientRegistry->getClient('vimeo.com')->willReturn($client);
+        $client->request($url)->willReturn($response);
         $response->getBody()->willReturn($body);
         $body->getContents()->willReturn(<<<EOM
 {
