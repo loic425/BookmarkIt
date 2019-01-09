@@ -1,12 +1,12 @@
 {
     "type": "video",
-    "title": "Back to the Future Prequel Trailer: 1.21 Gigawatts",
-    "url": "https://vimeo.com/155616916",
-    "authorName": "Tyler Hopkins",
+    "title": "The New Vimeo Player (You Know, For Videos)",
+    "url": "https://vimeo.com/76979871",
+    "authorName": "Vimeo Staff",
     "addedAt": "@string@.isDateTime()",
-    "width": 640,
-    "height": 360,
-    "duration": 146,
+    "width": 480,
+    "height": 270,
+    "duration": 62,
     "tags": [
         "movie",
         "science-fiction",
