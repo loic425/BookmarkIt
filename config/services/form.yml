@@ -11,8 +11,3 @@ services:
             - [video, photo]
         tags:
             - { name: form.type }
-
-    app.date_type_extension:
-        class: App\Form\Extension\DateTypeExtension
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\DateType }
