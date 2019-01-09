@@ -36,12 +36,12 @@ class OembedUrlValidatorSpec extends ObjectBehavior
 
     function it_returns_null_when_value_is_null(OembedUrl $constraint): void
     {
-        $this->validate(null, $constraint);
+        $this->validate(null, $constraint)->shouldReturn(null);
     }
 
     function it_returns_null_when_value_is_empty(OembedUrl $constraint): void
     {
-        $this->validate('', $constraint);
+        $this->validate('', $constraint)->shouldReturn(null);
     }
 
     function it_throws_an_unexpected_value_exception_when_value_is_not_a_string(
@@ -51,6 +51,11 @@ class OembedUrlValidatorSpec extends ObjectBehavior
         $this
             ->shouldThrow(UnexpectedValueException::class)
             ->during('validate', [2, $constraint]);
+    }
+
+    function it_returns_null_when_url_is_not_valid(OembedUrl $constraint): void
+    {
+        $this->validate('not valid url', $constraint)->shouldReturn(null);
     }
 
     function it_builds_a_violation_when_domain_is_not_supported(
