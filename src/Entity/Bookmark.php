@@ -72,7 +72,7 @@ class Bookmark implements ResourceInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      *
      * @Assert\NotBlank()
      * @Assert\Url()

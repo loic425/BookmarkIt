@@ -8,9 +8,19 @@ sylius_grid:
             sorting:
                 addedAt: desc
             fields:
+                url:
+                    type: twig
+                    label: app.ui.url
+                    sortable: ~
+                    options:
+                        template: "frontend/bookmark/grid/field/url.html.twig"
                 title:
                     type: string
                     label: sylius.ui.title
+                    sortable: ~
+                authorName:
+                    type: string
+                    label: sylius.ui.author
                     sortable: ~
                 type:
                     type: twig
@@ -20,10 +30,7 @@ sylius_grid:
                         vars:
                             labels: "frontend/bookmark/label/type"
                         template: "frontend/bookmark/grid/field/type.html.twig"
-                authorName:
-                    type: string
-                    label: sylius.ui.author
-                    sortable: ~
+
                 addedAt:
                     type: datetime
                     label: app.ui.added_date
