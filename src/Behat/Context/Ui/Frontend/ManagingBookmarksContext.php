@@ -186,6 +186,20 @@ class ManagingBookmarksContext implements Context
     }
 
     /**
+     * @Then I should be notified that the url is not valid
+     */
+    public function iShouldBeNotifiedThatUrlIsNotValid()
+    {
+        /** @var CreatePage $currentPage */
+        $currentPage = $this->currentPageResolver->getCurrentPageWithForm([
+            $this->createPage,
+            $this->updatePage,
+        ]);
+
+        Assert::same($currentPage->getValidationMessage('url'), 'This value is not a valid URL.');
+    }
+
+    /**
      * @Then this bookmark should not be added
      */
     public function thisBookmarkShouldNotBeAdded()

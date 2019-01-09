@@ -11,3 +11,11 @@ Feature: Bookmarks validation
         And I try to add it
         Then I should be notified that the url is required
         And this bookmark should not be added
+
+    @ui
+    Scenario: Trying to add a new bookmark with a not valid url
+        Given I want to create a new bookmark
+        When I specify its url as "not valid url"
+        And I try to add it
+        Then I should be notified that the url is not valid
+        And this bookmark should not be added

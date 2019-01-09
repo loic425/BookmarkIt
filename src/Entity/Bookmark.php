@@ -68,6 +68,7 @@ class Bookmark implements ResourceInterface
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank()
+     * @Assert\Url()
      *
      * @Serializer\Groups({"Default", "Detailed"})
      */
