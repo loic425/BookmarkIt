@@ -87,22 +87,10 @@ class BookmarkExampleFactory extends AbstractExampleFactory
             })
 
             ->setDefault('width', function (Options $options) {
-                if (Bookmark::TYPE_PHOTO === $options['type']) {
-                    $size = getimagesize($options['url']);
-
-                    return $size[0];
-                }
-
                 return $this->faker->randomElement([1024, 1600, 1920]);
             })
 
             ->setDefault('height', function (Options $options) {
-                if (Bookmark::TYPE_PHOTO === $options['type']) {
-                    $size = getimagesize($options['url']);
-
-                    return $size[1];
-                }
-
                 return $this->faker->randomElement([1024, 1600, 1920]);
             })
 

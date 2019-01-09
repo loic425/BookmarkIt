@@ -35,3 +35,11 @@ Feature: Bookmarks validation
         And I try to add it
         Then I should be notified that the url "http://www.flickr.com/photos/bees/0/" is not supported
         And this bookmark should not be added
+
+    @ui
+    Scenario: Trying to add a new bookmark with an existing url
+        Given there is a bookmark with url "http://www.flickr.com/photos/bees/2341623661/"
+        And I want to create a new bookmark
+        When I specify its url as "http://www.flickr.com/photos/bees/2341623661/"
+        And I try to add it
+        Then I should be notified that the url already exists

@@ -14,6 +14,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Validator\Constraints as CustomAssert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,6 +22,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table("app_bookmark")
+ *
+ * @UniqueEntity(
+ *     fields={"url"},
+ *     errorPath="url",
+ *     message="app.bookmark.url.unique"
+ * )
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"Default", "Detailed"}},

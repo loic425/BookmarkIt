@@ -60,6 +60,14 @@ final class BookmarkContext implements Context
     }
 
     /**
+     * @Given there is (also )a bookmark with url :url
+     */
+    public function thereIsBookmarkWithUrl(string $url)
+    {
+        $this->createBookmark(['url' => $url]);
+    }
+
+    /**
      * @param array $options
      */
     private function createBookmark(array $options)
