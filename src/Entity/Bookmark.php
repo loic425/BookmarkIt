@@ -24,6 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"Default", "Detailed"}},
+ *     denormalizationContext={"groups"={"Write"}},
  *     itemOperations={
  *          "delete",
  *          "get",
@@ -70,7 +71,7 @@ class Bookmark implements ResourceInterface
      * @Assert\Url()
      * @CustomAssert\OembedUrl
      *
-     * @Serializer\Groups({"Default", "Detailed"})
+     * @Serializer\Groups({"Default", "Detailed", "Write"})
      */
     private $url;
 
@@ -124,7 +125,7 @@ class Bookmark implements ResourceInterface
      *
      * @ORM\Column(type="json")
      *
-     * @Serializer\Groups({"Default", "Detailed"})
+     * @Serializer\Groups({"Default", "Detailed", "Write"})
      */
     private $tags = [];
 
