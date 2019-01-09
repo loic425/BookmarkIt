@@ -24,14 +24,6 @@ matrix:
                     packages:
                         - mysql-server
                         - mysql-client
-        -
-            sudo: false
-            php: 7.2
-            env: BOOKMARK_IT_SUITE="docs packages"
-            addons:
-                apt:
-                    packages:
-                        - parallel
 
 cache:
     yarn: true
