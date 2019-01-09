@@ -1,8 +1,0 @@
-app_backend_dashboard:
-    path: /
-    defaults:
-        _controller:  FrameworkBundle:Template:template
-        template:     'backend/index.html.twig'
-
-sylius_backend_security:
-    resource: "backend/security.yml"
