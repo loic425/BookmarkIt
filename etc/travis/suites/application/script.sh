@@ -9,6 +9,7 @@ commands=(
     validate-doctrine-schema
     validate-twig
     validate-yaml-files
+    validate-coding-standards
     test-phpspec
     test-phpstan
     test-phpunit
