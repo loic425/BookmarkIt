@@ -9,6 +9,16 @@
     </a>    
 </h1>
 
+Quick Installation with vagrant
+-------------------------------
+
+```bash
+$ cd etc/vagrant
+$ vagrant up
+```
+
+Then open `http://10.0.0.200/index.php` in your web browser to enjoy BookmarkIt website.
+
 Init project
 ------------
 
